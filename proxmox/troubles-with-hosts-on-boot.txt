@@ -1,0 +1,9 @@
+https://forum.proxmox.com/threads/ovh-proxmox-6-no-web-gui-access.70644/
+
+On boot, proxmox add a new line in /etc/hosts with 127.0.1.1 and the server address.
+
+This cause pveproxy and pvecluster crash.
+SSH access works perfectly
+
+Resolved by disabling cloud-init : 
+touch /etc/cloud/cloud-init.disabled
