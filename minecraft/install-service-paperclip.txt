@@ -1,0 +1,20 @@
+
+nano /etc/systemd/system/paperclip.service
+----------------------------------------------------------------------------
+[Unit]
+Description=paperclip
+
+[Service]
+Type=forking
+User=cube
+ExecStart=/usr/bin/screen -dmS paperclip /home/cube/paperclip/start.sh
+ExecStop=/usr/bin/screen -S paperclip -p 0 -X eval 'stuff "stop"\\015'
+WorkingDirectory=/home/cube/paperclip
+
+[Install]
+WantedBy=multi-user.target
+-----------------------------------------------------------------------------
+
+systemctl enable paperclip.service
+sudo service paperclip start
+sudo service paperclip status
