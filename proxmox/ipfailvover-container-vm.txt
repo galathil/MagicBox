@@ -1,0 +1,11 @@
+To link an IP to container/VM :
+
+1) Buy an IP failover on SoYouStart dashboard, then create a "virtual OVH mac address"
+2) On your Proxmox, create a VM/Container.
+3) On the network section, you must have an interface like this :
+- Mac : OVH virtual mac
+- Bridge : Select the vmbrX (from the host)
+- IPV4 : Static
+- IPV4/CIDR : xxx.xxx.xxx.xxx/24 (with your failover-ip)
+- Gateway (IPV4) : yyyy.yyyy.yyyy.254 (y is your host IP, must be ending with 254)
+- IPV6 : I don't know, never configure this)
