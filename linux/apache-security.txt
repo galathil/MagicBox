@@ -1,0 +1,5 @@
+nano /etc/apache2/conf-enabled/security.conf
+---
+ServerTokens Prod
+ServerSignature Off
+---
