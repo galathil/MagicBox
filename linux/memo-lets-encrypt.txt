@@ -1,0 +1,2 @@
+apt install certbot
+certbot certonly --apache --cert-name example.com --email your@mail.com --domains example.com,foo.example.com,bar.example.com
