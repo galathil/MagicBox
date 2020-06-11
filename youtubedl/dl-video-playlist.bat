@@ -1,0 +1,2 @@
+color 1f
+youtube-dl.exe -f best --recode-video avi --add-metadata --audio-quality 0 --no-mark-watched --ignore-errors --yes-playlist -o "%%(playlist)s/%%(title)s.%%(ext)s" "https://www.youtube.com/watch?v=xxx&list=yyyyy"
