@@ -1,0 +1,2 @@
+# Force SMTP delivery for every mails in queue
+exim4 -qff
