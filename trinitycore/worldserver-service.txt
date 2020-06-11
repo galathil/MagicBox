@@ -1,0 +1,21 @@
+nano /etc/systemd/system/worldserver.service
+----------------------------
+[Unit]
+Description=TrinityCore World Server
+
+[Service]
+Type=forking
+WorkingDirectory=/home/dev/server/bin
+User=dev
+
+ExecStart=/usr/bin/screen -dmS worldserver /home/dev/server/bin/worldserver
+ExecReload=/usr/bin/screen -S worldserver -p 0 -X stuff "server shutdown force 0\\r"; /usr/bin/screen -dmS worldserver /home/dev/server/bin/worldserver
+ExecStop=/usr/bin/screen -S worldserver -p 0 -X stuff "server shutdown force 0\\r"
+
+RestartSec=10s
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+----------------------------
+systemctl enable worldserver

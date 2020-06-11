@@ -1,0 +1,21 @@
+nano /etc/systemd/system/authserver.service
+----------------------------
+[Unit]
+Description=TrinityCore Authentication Server
+
+[Service]
+Type=forking
+WorkingDirectory=/home/dev/server/bin
+User=dev
+
+ExecStart=/usr/bin/screen -dmS authserver /home/dev/server/bin/authserver
+ExecReload=/usr/bin/killall -w -s 15 authserver; /usr/bin/screen -dmS authserver /home/dev/server/bin/authserver
+ExecStop=/usr/bin/killall -w -s 15 authserver
+
+RestartSec=10s
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+----------------------------------------
+systemctl enable authserver

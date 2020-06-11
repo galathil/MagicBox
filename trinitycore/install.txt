@@ -1,0 +1,27 @@
+#
+# Official wiki : https://trinitycore.atlassian.net/wiki/spaces/tc/pages/10977288/Linux+Requirements
+#
+
+apt update && apt upgrade
+apt install git clang cmake make gcc g++ libmariadbclient-dev libssl-dev libbz2-dev libreadline-dev libncurses-dev libboost-all-dev mariadb-server p7zip default-libmysqlclient-dev screen htop nano
+update-alternatives --install /usr/bin/cc cc /usr/bin/clang 100
+update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang 100
+
+adduser dev
+su dev
+cd
+git clone --depth 1 --branch TDB335.20051 https://github.com/TrinityCore/TrinityCore.git
+cd TrinityCore
+mkdir build && cd build
+cmake ../ -DCMAKE_INSTALL_PREFIX=/home/dev/server
+make -j $(nproc) install
+
+
+# Please change trinity password on create_mysql before!
+mysql -u root -p < ~/TrinityCore/sql/create/create_mysql.sql
+mysql -u root -p auth < ~/TrinityCore/sql/base/auth_database.sql
+mysql -u root -p characters < ~/TrinityCore/sql/base/characters_database.sql
+# Retrieve and apply world DB from github releases of TC
+
+mv ~/server/etc/worldserver.conf.dist ~/server/etc/worldserver.conf
+mv ~/server/etc/authserver.conf.dist ~/server/etc/authserver.conf
