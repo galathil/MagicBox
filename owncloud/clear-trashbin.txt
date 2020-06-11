@@ -1,0 +1,6 @@
+
+# All trashbins
+sudo -u www-data php occ trashbin:cleanup
+
+# specify users (example : foo and bar)
+sudo -u www-data php occ trashbin:cleanup foo bar
