@@ -1,0 +1,7 @@
+Comment sauvegarder sur un point de montage NFS, alors ?
+
+Éditez le fichier vzdump.conf (nano /etc/vzdump.conf) et indiquez la ligne
+tmpdir: /var/lib/vz/vztmp
+
+
+source : https://jean.traulle.net/2016/02/proxmox-ve-vzdump-sauvegarde-nfs-danger/#Comment_sauvegarder_sur_un_point_de_montage_NFS,_alors
