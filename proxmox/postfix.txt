@@ -1,0 +1,9 @@
+# Proxmox cannot send mails?
+# Verify hostname value in config :
+nano /etc/postfix/main.cf
+
+# Then restart :
+service postfix restart
+
+# Test : 
+echo "Subject: hello" | sendmail you@example.com
