@@ -1,0 +1,20 @@
+nano /etc/systemd/system/monrobot.service
+
+------------------------------------------------------
+[Unit]
+Description=Mon robot
+
+[Service]
+WorkingDirectory=/opt/monrobot
+ExecStart=/usr/bin/java -jar monrobot.jar
+User=root
+Type=simple
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+-----------------------------------------------------
+
+systemctl enable monrobot.service
+systemctl start monrobot
