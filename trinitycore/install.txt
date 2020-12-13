@@ -10,18 +10,23 @@ update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang 100
 adduser dev
 su dev
 cd
-git clone --depth 1 --branch TDB335.20051 https://github.com/TrinityCore/TrinityCore.git
+git clone --depth 1 --branch TDB335.20111 https://github.com/TrinityCore/TrinityCore.git
 cd TrinityCore
 mkdir build && cd build
 cmake ../ -DCMAKE_INSTALL_PREFIX=/home/dev/server
 make -j $(nproc) install
 
 
-# Please change trinity password on create_mysql before!
+# CHANGE TRINITY PASSWORD BEFORE APPLY "create_mysql.sql" !
 mysql -u root -p < ~/TrinityCore/sql/create/create_mysql.sql
+
 mysql -u root -p auth < ~/TrinityCore/sql/base/auth_database.sql
 mysql -u root -p characters < ~/TrinityCore/sql/base/characters_database.sql
-# Retrieve and apply world DB from github releases of TC
+
+# Retrieve and apply World DB :
+wget https://github.com/TrinityCore/TrinityCore/releases/download/TDB335.20111/TDB_full_world_335.20111_2020_11_16.7z
+7zr e TDB_full_world_335.20111_2020_11_16.7z
+mysql -u root -p world < ~/TDB_full_world_335.20111_2020_11_16.sql
 
 mv ~/server/etc/worldserver.conf.dist ~/server/etc/worldserver.conf
 mv ~/server/etc/authserver.conf.dist ~/server/etc/authserver.conf
