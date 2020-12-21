@@ -1,0 +1,10 @@
+#
+# After partitionning, latency at boot
+#
+
+# To obtain disks UUID, run "ls -l /dev/disk/by-uuid/"
+
+# Check/change UUIDs in /etc/fstab
+
+# Check/change SWAP UUID in /etc/initramfs-tools/conf.d/resume
+# If changed, run "update-initramfs -u"
