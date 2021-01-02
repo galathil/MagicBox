@@ -1,2 +1,15 @@
+# requirements
 apt install certbot python3-certbot-apache
+
+# Install certificate
 certbot certonly --apache --cert-name example.com --email your@mail.com --domains example.com,foo.example.com,bar.example.com
+
+# Redirect http -> https (apache2 virtuelhost)
+RewriteEngine on
+RewriteCond %{SERVER_NAME} =example.com
+RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+
+# Apache2 SSl Configuration
+SSLCertificateFile /etc/letsencrypt/live/example.com/fullchain.pem
+SSLCertificateKeyFile /etc/letsencrypt/live/example.com/privkey.pem
+Include /etc/letsencrypt/options-ssl-apache.conf
