@@ -1,0 +1,11 @@
+# Debian 10 buster templkate
+
+apt install curl build-essential autoconf automake cmake libbz2-dev libace-dev libssl-dev default-libmysqlclient-dev libtool git
+
+adduser mangos
+su mangos
+
+git clone https://github.com/mangoszero/server.git --recursive --depth=1
+mkdir server/build && cd server/build
+cmake .. -DCMAKE_INSTALL_PREFIX=/home/mangos/mangos -DCONF_INSTALL_DIR=/home/mangos/mangos/conf
+make -j2
